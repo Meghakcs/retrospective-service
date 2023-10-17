@@ -2,6 +2,7 @@ package com.core.retrospective.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -29,11 +30,10 @@ public class Retrospective {
 	@Column(name = "participants", nullable = false )
 	private  ArrayList<String> participants = new ArrayList<String>();
 	
-	@OneToOne(mappedBy = "retrospective")
-	private Feedback feedbackId;
-    
-	@Column(name = "feedback")
-	private ArrayList<String> feedback = new ArrayList<String>();
+	@OneToMany(mappedBy = "retrospective")
+	private List<Feedback> feedbackId;    
+//	@Column(name = "feedback")
+//	private ArrayList<String> feedback = new ArrayList<String>();
 	
 	public int getId() {
 		return id;
@@ -75,14 +75,8 @@ public class Retrospective {
 		this.participants = participants;
 	}
 
-	public ArrayList<String> getFeedback() {
-		return feedback;
-	}
-
-	public void setFeedback(ArrayList<String> feedback) {
-		this.feedback = feedback;
-	}
-
+	
+	
 	public Date getCreatedAt() {
 		return createdAt;
 	}

@@ -25,7 +25,7 @@ public class Feedback {
 	@Column(name = "feedback_type")
 	private String feedbackType;
 		
-	@OneToOne
+	@ManyToOne
     @PrimaryKeyJoinColumn(name = "retrospective_id")
     private Retrospective retrospective;
 

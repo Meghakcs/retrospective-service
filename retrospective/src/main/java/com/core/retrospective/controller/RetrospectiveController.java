@@ -55,6 +55,7 @@ public class RetrospectiveController {
 		  logger.info("create Retrospective Response" +retrospectiveCreated);
 		} catch (Exception e) {
 		logger.error("Error while creating Retrospective" +e.getMessage());
+		 return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	    return new ResponseEntity<>(retrospectiveCreated, HttpStatus.CREATED);
 	}
@@ -93,7 +94,7 @@ public class RetrospectiveController {
      * @return
      */
    
-   @PatchMapping("/updateFeedbackDetails")
+   @PatchMapping("/updateFeedbackDetails/{id}")
    public ResponseEntity<Feedback> updateFeedbackDetails(@PathVariable int id, @RequestBody FeedbackDTO feedbackDTO) {
 		Feedback feedbackUpdated = null;
 		try {
@@ -111,7 +112,7 @@ public class RetrospectiveController {
     * @param feedbackDTO
     * @return
     */
-   @PatchMapping("/updateFeedback")
+   @PatchMapping("/updateFeedback/{id}")
    public ResponseEntity<Feedback> updateFeedback(@PathVariable int id, @RequestBody FeedbackDTO feedbackDTO) {
 		Feedback feedbackUpdated = null;
 		try {

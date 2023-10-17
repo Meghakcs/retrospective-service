@@ -1,17 +1,24 @@
 package com.core.retrospective.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.core.retrospective.model.Feedback;
 import com.core.retrospective.model.FeedbackDTO;
+import com.core.retrospective.model.Retrospective;
 import com.core.retrospective.repository.FeedbackRepository;
+import com.core.retrospective.repository.RetrospectiveRepository;
 
 @Service
 public class FeedbackService {
 
 	@Autowired
 	FeedbackRepository feedbackRepository;
+	
+	@Autowired
+	RetrospectiveRepository retrospectiveRepository;
 
 	/**
 	 * Update Feedback body and type 
@@ -38,10 +45,12 @@ public class FeedbackService {
 	 */
 	public Feedback updateFeedback(int id, FeedbackDTO feedbackDTO) {
 
+		Optional<Retrospective> retrospective = retrospectiveRepository.findById(id);
 		Feedback feedback = new Feedback();
 		feedback.setName(feedbackDTO.getName());
 		feedback.setBody(feedbackDTO.getBody());
 		feedback.setFeedbackType(feedbackDTO.getFeedbackType());
+		feedback.setRetrospective(retrospective.get());
 		return feedbackRepository.save(feedback);
 	}
 

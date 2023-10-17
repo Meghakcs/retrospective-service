@@ -4,7 +4,6 @@ public class FeedbackDTO {
 
 	private String body;
 	private String feedbackType;
-	private Retrospective retrospectiveId;
 	private String name;
 	
 
@@ -30,14 +29,6 @@ public class FeedbackDTO {
 
 	public void setFeedbackType(String feedbackType) {
 		this.feedbackType = feedbackType;
-	}
-
-	public Retrospective getRetrospectiveId() {
-		return retrospectiveId;
-	}
-
-	public void setRetrospectiveId(Retrospective retrospectiveId) {
-		this.retrospectiveId = retrospectiveId;
 	}
 	
 	public String getName() {
